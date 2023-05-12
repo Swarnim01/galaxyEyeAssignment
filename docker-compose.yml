@@ -1,0 +1,24 @@
+version: '3'
+services:
+  client:
+    image: galaxyeye-client
+    build: ./client/
+
+    stdin_open: true  
+    ports:
+      - '3000:3000'
+    networks:
+      - galaxyeye-network
+    depends_on:
+      - server
+  server:
+    image: galaxyeye-server
+    build: ./server/
+    ports:
+      - '3001:3001'
+    networks:
+      - galaxyeye-network
+networks:
+ galaxyeye-network: {
+  driver: bridge
+ }
